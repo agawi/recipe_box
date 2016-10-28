@@ -1,0 +1,33 @@
+.recipe.clearfix
+
+  .row
+    .col-md-4.col-md-offset-1
+      .box
+        .img=image_tag @recipe.image.url(:medium)
+    
+    .col-md-7
+      .box
+        h1 =@recipe.title
+        p =@recipe.description
+    
+  .row
+    .col-md-6
+      .box
+        h2 Ingredients
+        ul
+          -@recipe.ingredients.each do |ingredient|
+            li =ingredient.name 
+          
+    .col-md-6
+      .box
+        h2 Directions
+        ul
+          -@recipe.directions.each do |direction|
+            li =direction.step
+            
+  .row
+
+    -if current_user == @recipe.user
+      .col-md-1
+        = link_to "Delete", @recipe, method: :delete, data:{confirm:"Are you sure?"}, class: "btn btn-default"
+        = link_to "Edit", edit_recipe_path, class: "btn btn-default"

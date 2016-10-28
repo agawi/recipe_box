@@ -1,0 +1,21 @@
+header.header-navigation-bar
+  nav.navbar.navbar-default
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="flase"]
+          span.sr-only Toggle Naviagtion
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        =link_to "Recipe Box", root_path, class:"navbar-brand", method: :get
+      
+      .collapse.navbar-collapse#bs-example-navbar-collapse-6
+        ul.nav.navbar-nav
+          li[data-turbolinks="false"]= link_to "All recipes", root_path
+          li[data-turbolinks="false"]= link_to "+ Add Recipe", new_recipe_path
+        ul.nav.navbar-nav.log-btn
+          -if user_signed_in?
+            li[data-turbolinks="false"]= link_to "Sign out", destroy_user_session_path, method: :delete
+          -else
+            li[data-turbolinks="false"]= link_to "Sign in", new_user_session_path
+            li[data-turbolinks="false"]= link_to "Sign up", new_user_registration_path
